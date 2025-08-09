@@ -1,0 +1,15 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+h3 {
+    color : #007bff;
+}
+
+footer {
+    font-size: 0.9rem;
+}
