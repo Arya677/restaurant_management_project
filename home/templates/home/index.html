@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">My Restaurant</a>
+    </div>
+</nav>
+
+<header class="bg-primary text-white text-center py-5">
+    <h1 class="display-4">Welcone to my Restaurant</h1>
+    <p class="lead">Delicious food, cozy atmosphere, and great service</p>
+    <a href="#" class="btn btn-light btn-lg">Order Now</a>
+</header>
+
+<section class="container my-5">
+    <div class="row text-center">
+        <div class="col-md=4">
+            <h3>Fresh Ingredients</h3>
+            <p>We use only the freshest and finest ingredients for all our dishes.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Fast service</h3>
+            <p>Your food is served hot and fresh in the shortest possible time.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Coze Ambience</h3>
+            <p>Enjoy your meals in a relaxing and comfortable environment.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 My Restaurant | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
