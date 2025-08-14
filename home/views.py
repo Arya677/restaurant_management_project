@@ -9,4 +9,4 @@ def homepage(request):
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name})
 
 def restaurant_about(request):
-    return render(request, 'restaurant_about.html')
+    return render(request, 'home/restaurant_about.html')
