@@ -7,3 +7,6 @@ def homepage(request):
     else:
         restaurant_name = getattr(settings, 'RESTAURANT_NAME', 'Restaurant')
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name})
+
+def restaurant_about(request):
+    return render(request, 'restaurant_about.html')
