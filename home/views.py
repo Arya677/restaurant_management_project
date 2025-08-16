@@ -6,6 +6,10 @@ def homepage(request):
         restaurant_name = restaurant.name
     else:
         restaurant_name = getattr(settings, 'RESTAURANT_NAME', 'Restaurant')
+
+    # get phone number also 
+    phone_number = restaurant.phone_number if restaurant and restaurant.phone_number else "Not Available"
+
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name})
 
 def restaurant_about(request):
