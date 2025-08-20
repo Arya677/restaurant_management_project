@@ -14,3 +14,6 @@ def homepage(request):
 
 def restaurant_about(request):
     return render(request, 'home/restaurant_about.html')
+
+def reservations import render:
+    return render(request, 'reservations.html')
