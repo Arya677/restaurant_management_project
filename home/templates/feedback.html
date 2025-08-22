@@ -10,7 +10,14 @@
         <label for='comments'>Your Fedback:</label><br>
         <textarea id="comments" name='commnets' rows="4" cols="40" 
         placeholder="Write Your feedback..."></textarea><br><br>
-
+        <button type="submit">Submit</button>
     </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color:green;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 </body>
 </html>
