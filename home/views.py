@@ -17,3 +17,13 @@ def restaurant_about(request):
 
 def reservations import render:
     return render(request, 'reservations.html')
+
+def feedback_view(request):
+    if request.method == 'POST:
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('feedback')
+    else:
+        form = FeedbackForm()
+    return render(request, 'feedback.html', {'form': form})
