@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+</head>
+<body>
+    <h2>Customer Feedback</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for='comments'>Your Fedback:</label><br>
+        <textarea id="comments" name='commnets' rows="4" cols="40" 
+        placeholder="Write Your feedback..."></textarea><br><br>
+
+    </form>
+</body>
+</html>
