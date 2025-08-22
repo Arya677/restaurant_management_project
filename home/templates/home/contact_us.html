@@ -8,11 +8,20 @@
 <body>
     <div class="container mt-4">
         <h2 class="text-center">Content Us</h2>
-        <div class="card shadow-sm p-4 mt-3">
-            <p><strong>Phone:</strong>{{ contact.phone }}</p>
-            <p><strong>Email:</strong>{{ contact.email }}</p>
-            <p><strong>Address:</strong>{{ contact.address }}</p>
-        </div>
+        <form id="contactForm" method="post">
+            {% csrf_token %}
+            
+            <label>Name:</label>
+            <input id="name" name="name" type="text"><br><br>
+
+            <label>Email:</label>
+            <input id="email" type="email" name="email"><<br><br>
+
+            <label>Message:</label>
+            <textarea id="message" name="message"></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </body>
 </html>
