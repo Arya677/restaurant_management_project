@@ -32,11 +32,17 @@
     </div> 
 </nav>
 
-<header class="bg-primary text-white text-center py-5">                                                   
+<header class="bg-primary text-white text-center py-5">                                                                                                     
+<div container> 
+    <form method="get" action="#" class="d-flex justify-content-center mn-4">
+        <input type="text" name="q" class="form-control w-50 me-2" placeholder="Search menu items...">
+        <button type="submit" class="btn btn-light">Search</button>
+    </form>                                           
     <h1 class="display-4 fw-bold">Welcone to my Restaurant</h1>
     <p class="lead">Delicious food, cozy atmosphere, and great service</p>
     <p><strong>Call us:</strong>{{ phone_number }}</p>
     <a href="#" class="btn btn-light btn-lg shadow-sm mt-2"> Order Now </a>
+</div>
 </header>
 
 <section class="container my-4">
