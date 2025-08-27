@@ -9,8 +9,9 @@ def homepage(request):
 
     # get phone number also 
     phone_number = restaurant.phone_number if restaurant and restaurant.phone_number else "Not Available"
-
-    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number})
+    response = requests.get("http://127.0.0.1:8000/api/manu/")
+    menu_items = response.json()
+    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items})
 
 def restaurant_about(request):
     return render(request, 'home/restaurant_about.html')
