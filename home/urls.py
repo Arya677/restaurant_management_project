@@ -7,5 +7,5 @@ urlpatterns = [
     path('menu/', views.menu_list, name="menu_list"),
     path('contact/', views.contact_us, name='contact_us'),
     path('feedback/', views.feedback_view, name='feedback'),
-
+    path('api/', include("rest.urls")),
 ]
