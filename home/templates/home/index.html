@@ -37,7 +37,18 @@
     <form method="get" action="#" class="d-flex justify-content-center mn-4">
         <input type="text" name="q" class="form-control w-50 me-2" placeholder="Search menu items...">
         <button type="submit" class="btn btn-light">Search</button>
-    </form>                                           
+    </form>   
+    {% for item in menu_items %} 
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text text-muted">{{item.description}}</p>
+                <p class="fw-bold">{{item.price}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}                                       
     <h1 class="display-4 fw-bold">Welcone to my Restaurant</h1>
     <p class="lead">Delicious food, cozy atmosphere, and great service</p>
     <p><strong>Call us:</strong>{{ phone_number }}</p>
