@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Restaurant
+from .models import Menu, Order
 
-@admin.register(Restaurant)
-class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    
+admin.site.register(Menu)
+admin.site.register(Order)
