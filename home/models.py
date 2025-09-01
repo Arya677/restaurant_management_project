@@ -8,6 +8,14 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.get_full_name() or self.user.username
 
+class MenuItem(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.name} = {self.price}"
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
