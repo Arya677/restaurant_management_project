@@ -14,6 +14,10 @@ def homepage(request):
             
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items}, "address":address)
 
+def menu_page(request):
+    menu_items = MenuItem.objects.all()
+    return render(request,'menu/menu.html',{'menu_items': menu_items})
+
 def restaurant_about(request):
     return render(request, 'home/restaurant_about.html')
 
