@@ -10,17 +10,14 @@
         <h2 class="text-center">Contact Us</h2>
         <form id="contactForm" method="post">
             {% csrf_token %}
-            
-            <label>Name:</label>
-            <input id="name" name="name" type="text"><br><br>
+            <label for="id_name">Name:</label><br>
+            {{form.name}} <br><br>
 
-            <label>Email:</label>
-            <input id="email" type="email" name="email"><<br><br>
-
-            <label>Message:</label>
-            <textarea id="message" name="message"></textarea><br><br>
+            <label for="id_email">Email:</label><br>
+            {{form.email}} <br><br>
 
             <button type="submit">Submit</button>
+              
         </form>
     </div>
 </body>
