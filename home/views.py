@@ -2,15 +2,15 @@ from django.shortcuts import render
 
 def homepage(request):
     restaurant = Restaurant.objects.first()
-    if restaurant and restaurant.name:
-        restaurant_name = restaurant.name
-    else:
-        restaurant_name = getattr(settings, 'RESTAURANT_NAME', 'Restaurant')
-
-    # get phone number also 
-    phone_number = restaurant.phone_number if restaurant and restaurant.phone_number else "Not Available"
-    response = requests.get("http://127.0.0.1:8000/api/manu/")
-    menu_items = response.json()
+    restaurant_name = restaurant.name if restaurant and restaurant_name esle getattr(setting,'RESTAURANT_NAME', 'Restaurant')
+    phone_number = restaurant.phone_number if restaurant and hasattr(restaurant,'phone_number') and restaurant.phone_number esle "Not Available"
+    try:
+        response = requests.get("http://127.0.0.1:8000/api/manu/")
+        response.raise_for_status()
+        menu_items = response.json()
+    except requests.exceptions.RequestException:
+        menu_items = []
+            
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items})
 
 def restaurant_about(request):
