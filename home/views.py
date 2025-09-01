@@ -4,6 +4,7 @@ def homepage(request):
     restaurant = Restaurant.objects.first()
     restaurant_name = restaurant.name if restaurant and restaurant_name esle getattr(setting,'RESTAURANT_NAME', 'Restaurant')
     phone_number = restaurant.phone_number if restaurant and hasattr(restaurant,'phone_number') and restaurant.phone_number esle "Not Available"
+    address = restaurant.address if restaurant and hasattr(restaurant,'address') else "Address Not Available"
     try:
         response = requests.get("http://127.0.0.1:8000/api/manu/")
         response.raise_for_status()
@@ -11,7 +12,7 @@ def homepage(request):
     except requests.exceptions.RequestException:
         menu_items = []
             
-    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items})
+    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items}, "address":address)
 
 def restaurant_about(request):
     return render(request, 'home/restaurant_about.html')
