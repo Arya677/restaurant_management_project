@@ -33,3 +33,7 @@ def feedback_view(request):
     else:
         form = FeedbackForm()
     return render(request, 'feedback.html', {'form': form})
+
+def menu_view(request):
+    menu_items = MenuItem.objects.all()
+    return render(request,'menu.html',{'menu_items':menu_items})
