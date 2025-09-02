@@ -9,4 +9,4 @@ urlpatterns = [
     path('feedback/', views.feedback_view, name='feedback'),
     path('api/', include("rest.urls")),
 ] if settings.DEBUG:
-      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                            )
+      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                  )
