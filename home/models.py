@@ -54,4 +54,4 @@ class Restaurnat(models.Model):
     address = models.CharField(max_length=225,blanl=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.name},{self.city},{self.state}'
