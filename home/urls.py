@@ -8,5 +8,7 @@ urlpatterns = [
     path('contact/', views.contact_us, name='contact_us'),
     path('feedback/', views.feedback_view, name='feedback'),
     path('api/', include("rest.urls")),
+    path('contact/', views.contact_view, name="contact"),
+
 ] if settings.DEBUG:
       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                  )
