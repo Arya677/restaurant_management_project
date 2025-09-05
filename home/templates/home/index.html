@@ -22,6 +22,10 @@
         <a class="navbar-brand fw-bold fs-3" href="#">
             <img src="{% static 'images/logo.jpg' %}" alt="Restaurant logo" class="logo">My Restaurant
         </a>
+        <form method="get">
+            <input type="text", name="q", placeholder="Searcg menu items..." value = {{ query|default:'' }}>
+            <button type="submit">Search</button>
+        </form>
         <div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
