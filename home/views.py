@@ -46,10 +46,23 @@ def contact_view(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("contact")
+            name = form.cleanedata["name"]
+            email = form.cleanedata["email"]
+            message = form.cleanedata["message"]
+
+            subject = f"New Contact Message from {name}"
+            full_message = f"Name" {name}\nEmail: {email}\n\nMessage:\n{message}"
+            
+            send_mail(
+                subject,
+                full_message,
+                setting.DEFAULT_FORM_EMAIL,
+                ["restaurant_email@examole.com"],
+            )
+            return redirect("contact_success")
     else:
-        form = ContactForm()
-    return render(request,"contact.html",{"form": form})
+        form.ContactForm()
+            return redirect("contact")
+    return render(request,"home/contact.html",{"form": form})
 
     
