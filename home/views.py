@@ -11,8 +11,12 @@ def homepage(request):
         menu_items = response.json()
     except requests.exceptions.RequestException:
         menu_items = []
+
+    query = request.GET.get("q","")
+    if qyery:
+        menu_items = [item for item in menu_items if query.lower() in item.get("name","").lower()]
             
-    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items}, "address":address)
+    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items}, "address":address, "query":query )
 
 def menu_page(request):
     menu_items = MenuItem.objects.all()
