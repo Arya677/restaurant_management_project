@@ -10,7 +10,7 @@
 
 {% if menu_items %}
     {% for item in menu_items %}
-        <div>
+        <div class="menu-item">
             {% if menu_image %}
                 <img src="{{item.image.url}}" alt="{{item.name}}" width="250"                    
             {% endif %}
