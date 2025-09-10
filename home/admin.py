@@ -10,4 +10,4 @@ class MenuItemAdmin(admin,ModelAdmin):
 
 @admin.register(Restaurant):
 class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('name','address')
+    list_display = ('name','address','phone_number')
