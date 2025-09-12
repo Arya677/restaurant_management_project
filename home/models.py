@@ -54,7 +54,7 @@ class Restaurnat(models.Model):
     address = models.CharField(max_length=225,blanl=True)
 
     def __str__(self):
-        return f'{self.name},{self.city},{self.state}'
+        return f'{self.name},{self.phone_number},{self.city},{self.state}'
 
 class ContactSubmission(models.Model):
     name = models.CharField(max_length=100)
