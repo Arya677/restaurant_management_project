@@ -5,6 +5,7 @@ def homepage(request):
     restaurant_name = restaurant.name if restaurant and restaurant_name esle getattr(setting,'RESTAURANT_NAME', 'Restaurant')
     phone_number = restaurant.phone_number if restaurant and hasattr(restaurant,'phone_number') and restaurant.phone_number esle "Not Available"
     address = restaurant.address if restaurant and hasattr(restaurant,'address') else "Address Not Available"
+    current_time = timezone.locaktime(timezone.now())
     try:
         response = requests.get("http://127.0.0.1:8000/api/manu/")
         response.raise_for_status()
@@ -16,7 +17,7 @@ def homepage(request):
     if qyery:
         menu_items = [item for item in menu_items if query.lower() in item.get("name","").lower()]
             
-    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items}, "address":address, "query":query )
+    return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items, "current_time": current_time}, "address":address, "query":query )
 
 def menu_page(request):
     menu_items = MenuItem.objects.all()
