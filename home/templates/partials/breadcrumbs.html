@@ -1,0 +1,10 @@
+<div class="text-sm text-gray-600 mb-4">
+    {% for name. url in breadcrumbs %}
+        {% if url %}
+            <a href="{{ url }}" class="text-blur-600">{{name}}</a>
+            {% if not forloop.last %} > {% endif %}
+        {% else %}
+            <span>{{ name }}</span>
+        {% endif %}
+    {% endfor %}
+</div>
