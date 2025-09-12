@@ -50,6 +50,9 @@
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="card-text text-muted">{{item.description}}</p>
                 <p class="fw-bold">{{item.price}}</p>
+                <p class="mt-2 text-lg text-grey-600">
+                    {{current_time|date:"l,d F Y"}} - {{current_time|time:"h:i A"}}
+                </p>
             </div>
         </div>
     </div>
