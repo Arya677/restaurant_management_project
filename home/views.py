@@ -66,4 +66,5 @@ def contact_view(request):
             return redirect("contact")
     return render(request,"home/contact.html",{"form": form})
 
-    
+def faq_view(request):
+    return render(request, "faq.html") 
