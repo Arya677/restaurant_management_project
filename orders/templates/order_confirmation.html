@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<htl lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Confirmation</title>    
+</head> 
+
+<body>
+<div class="confirmed!">
+    <h1>Order Confirmed!</h1>
+    <p>Thanks you for your order. We are preparing it for you./p>
+    <p class="order_number"><strong>#{{ order_number }}</strong></p> 
+    <a href="{% url 'home' %}">Back To Home</a>   
+</div>
+</body>
+
+</html>
