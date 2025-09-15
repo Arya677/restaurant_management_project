@@ -69,22 +69,38 @@
 </header>
 
 <section class="container my-4">
-    <div class="row text-center g-4">
+{% if user.is_authenticated %}
+    <div class="alert alert-success text-center">
+        Welcome back, <strong>{{ user.username}}</strong>
+        <a href="{% url 'logout' %}" class="btn btn-danger btn-sm ms-2">Logout</a>                         >
+    </div>
+{% else %}
+    <div class="card shadow-sm mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-3">Login</h3>
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
 
-        <!-- Hero section -->
-        <div class="col-md=4">
-            <h3>Fresh Ingredients</h3>
-            <p>We use only the freshest and finest ingredients for all our dishes.</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Fast service</h3>
-            <p>Your food is served hot and fresh in the shortest possible time.</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Coze Ambience</h3>
-            <p class="text-muted">Enjoy your meals in a relaxing and comfortable environment.</p>
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    Invalid username or password. Please try again.
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_username" class="form-lebel">Username</label>
+                    <input type="text" name="username" id="id_username" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_password" class="form-label">Password</label>
+                    <input type="password" name="password" id="id_password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
         </div>
     </div>
+{% endif %}
 </section>
 <h2>Welcome to our Restaurant</h2>
 {% if address %}
