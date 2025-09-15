@@ -68,3 +68,6 @@ def contact_view(request):
 
 def faq_view(request):
     return render(request, "faq.html") 
+
+def privacy_policy(request):
+    return render(request, "privacy_policy.html")
