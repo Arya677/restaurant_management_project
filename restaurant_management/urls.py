@@ -14,6 +14,8 @@ urlpatterns = [
     path('api/orders/',include('orders.urls')),
     path('api/', include(rest.urls)),
 
+    path("accounts/", include("django.contrib.auth.urls")),
+
 ]
 
 handler404 = 'restaurant_management.urls.custom_404'
