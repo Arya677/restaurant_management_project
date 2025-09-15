@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/', include("rest.urls")),
     path('contact/', views.contact_view, name="contact"),
     path("faq/", views.faq_view. name="faq"),
+    path("privacy-policy/", views.privacy_policy, name="privacy_policy")
 
 ] if settings.DEBUG:
       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                  )
