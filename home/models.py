@@ -8,6 +8,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.get_full_name() or self.user.username
 
+class MenuCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
