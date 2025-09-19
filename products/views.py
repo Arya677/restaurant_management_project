@@ -36,4 +36,24 @@ def menu_items_by_category(request):
     menu_items = MenuItem.objects.filter(category__name__iexact=category_name)
 
     serializer = MenuItemSerializer(menu_items, many= True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.data, status=status.HTTP_200_OK)   
+
+class MenuItemPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+
+class MenuItemSearchViewSet(viewsets.ViewSet):
+    pagination_class = MenuItemPagination
+
+    def list(self, request):
+        query = request.Get.get('q','')
+        if not query:
+            return Response({"error":"Query parameter 'q' is required"}, status=status.HTTP_400_BAD_REQUEST) 
+
+        queryset = MenuItem.objects.filter(name__icontains = query).order_by_('id')
+        paginator = self.pagination_class()
+        page = paginator.paginate_queryset(queryset, request)
+
+        serializer = MenuItemSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)
