@@ -1,4 +1,18 @@
 from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from .models import order
+from .serializers import OrderSerializer
+
+class OrderHistoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request):
+        user = request.user
+        orders = Order.objects.filter(user=user).order_by('-created_at')   
+        serializer = OrderSerializer(orders, many= True)
+        return Response(serializer.data, status=status.HTTP_200_OK)       
 
 def order_page(request):
     return render(request, "order.html
