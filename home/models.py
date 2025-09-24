@@ -60,9 +60,14 @@ class Restaurnat(models.Model):
     zip_code = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=225,blanl=True)
-
+    operating_days = models.CharField(
+        max_length= 100, help_text= 'Comma-separated list of days, e.g. 'Mon,Tue,Wed,Thu,Fri'                                       
+    )
     def __str__(self):
         return f'{self.name},{self.phone_number},{self.city},{self.state}'
+    
+    def get_operating_days_list(self):
+        return self.operating_days.split(",") if self.operating_days else []
 
 class ContactSubmission(models.Model):
     name = models.CharField(max_length=100)
