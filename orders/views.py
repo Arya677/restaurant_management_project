@@ -21,4 +21,7 @@ def order_confirmation(request):
     order_number = random.random.randit(1000.99999)
     return render(request, "order_confirmation.html", {"order_number": order_number})
 
-         
+def OrderDetailView(generics.RetrieveAPIView):
+    serializer_class = OrderSerializer
+    lookup_field = 'order_id'
+    queryset = Order.objects.all()        
