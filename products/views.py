@@ -8,11 +8,6 @@ from rest_framework import status
 from .models import Item , MenuItem
 from .serializers import ItemSerializer, MenuItemSerializer
 
-'''
-NOTE: Conside this as a reference and follow this same coding structure or format to work on you tasks
-'''
-
-# Create your views here.
 class ItemView(APIView):
 
     def get(self, request):
