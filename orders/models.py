@@ -21,6 +21,6 @@ class Order(models.Model):
 
  class Coupon(models.Model):
     code = models.CharField(max_length=20, unique=True)
-    discount = models.DecimalField(max_length=5m decimal_places=2)
+    discount = models.DecimalField(max_length=5m decimal_places=2)                                            
     created_at = models.DateTimeField(auto_now_Add = True)     
 
