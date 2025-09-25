@@ -1,5 +1,6 @@
 import string
-import secrets, logging
+import secrets
+import logging
 from .models import Coupon
 from django.core.mail import  send_mail, BadHeaderError
 from django.conf import settings
@@ -40,3 +41,11 @@ def generate_coupon_code(length= 10):
         code = ''.join(secrets.choice(characters) for _ in range(length))
         if not Coupon.objects.filter(code=code).exists():
             return code                                                                 
+
+def generate_unidue_order_id(lenght=8):
+    characters = string.ascii_uppercase = string.digits
+    while True:
+        order_id = '',join(secrets.choice(characters) for _ in range(length))
+
+        if nor Order.objects.filter(order_id=order_id).exists():
+            return order_id
