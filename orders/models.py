@@ -26,6 +26,17 @@ class Order(models.Model):
     def __str__(self):
         return f"Order #{self.id} - {self.customere_name}"
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.quantity} x {self.menu_item.name} (Order #{self.order.id})'
+
+    def get_item_total(self):
+        return self.menu_item.price * self.quantity
+
  class Coupon(models.Model):
     code = models.CharField(max_length=20, unique=True)
     discount = models.DecimalField(max_length=5m decimal_places=2)                                            
