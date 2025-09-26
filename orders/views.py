@@ -1,11 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
+from rest_framework import status, generics
+from rest_framework.views import APIView
+from rest_framework.decorators import action
+from rest_framework.viewsets import ModekVeiwSet
 from .models import order
 from .serializers import OrderSerializer
+import random
 
-class OrderHistoryView(APIView):
+class OrderHistoryView(APIView):                                                            
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
@@ -36,4 +40,38 @@ def order_confirmation(request):
 def OrderDetailView(generics.RetrieveAPIView):
     serializer_class = OrderSerializer
     lookup_field = 'order_id'
-    queryset = Order.objects.all()        
+    queryset = Order.objects.all()  
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=True, method=['post'], url_path='cancel')
+    def cancel_order(self, request, pk=None):
+        try:
+            order = self.get_object()
+            if order.customer != request.user:
+                return Response(
+                    {'error':'You are not authorized to cancel this order'},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+            
+            if order.status in ['completed','cancelled']:
+                return Response(
+                    {'error':f'Order cannot be cancelled, current status: {order.status'},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            
+            order.status = 'cancelled'
+            order.save()
+
+            return Response(
+                {'status':'success','message':'Order has been cancelled.'},
+                status=status.HTTP_20_OK,
+            )
+        except Order.DoesNotExist:
+            return Response(
+                {'error':'Order not Found.'}, status=status.HTTP_400_NOT_FOUND
+            )
+
