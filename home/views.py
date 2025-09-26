@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.htpp import JsonResponse
+from .utils import send_mail
 
 def homepage(request):
     restaurant = Restaurant.objects.first()
@@ -71,3 +73,11 @@ def faq_view(request):
 
 def privacy_policy(request):
     return render(request, "privacy_policy.html")
+
+def test_email(request):
+    result = send_mail(
+        recipient = 'text@example.com',
+        subject = 'Welcome to Django App',
+        message = 'Helllo This is a text email from our app.'
+    )
+    return JsonResponse(result)
