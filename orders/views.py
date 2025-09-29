@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework.viewsets import ModekVeiwSet
 from .models import order
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, OrderStatusUpdateSerializer
 import random
 
 class OrderHistoryView(APIView):                                                            
@@ -17,6 +17,19 @@ class OrderHistoryView(APIView):
         orders = Order.objects.filter(user=user).order_by('-created_at')   
         serializer = OrderSerializer(orders, many= True)
         return Response(serializer.data, status=status.HTTP_200_OK)       
+
+class UpdateOrderStatusView(APIView):
+    def put(self, request, order_id):
+        order = get_object_or_404(Order, id=order_id)
+
+        serializer = OrderStatusUpdateSerializer(order, data=request.data, partial=True)   
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {'message':'Order status updated successfully', 'order':serializer.data},
+                status = status.HTTP_200_OK,
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 def order_page(request):
     return render(request, "order.html
