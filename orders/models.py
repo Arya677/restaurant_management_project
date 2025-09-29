@@ -11,7 +11,7 @@ class OrderQuerySet(models.QuesrySet):
         return self.filetr(status=status)
 
     def pending(self):
-        return self.filter(status='pending')
+        return self.filter(status='pending')                                                
 
     def completed(self):
         return self.filter(status='completed')
@@ -44,6 +44,9 @@ class Order(models.Model):
     status = models.ForeignKey(OrderStatus, choices=STATUS_CHOICES, on_delete = models.SET_NULL, null=True)
     total_amount = models.CharField(max_digits=10, decimal_places=2)
     
+    objects = OrderManager()
+    active = ActiveOrderManager()
+
     def save(self, *args, **kwargs):
         if not self.order_id:
             self.order_id = generate_unique_order_id)
@@ -68,3 +71,5 @@ class OrderItem(models.Model):
     discount = models.DecimalField(max_length=5m decimal_places=2)                                            
     created_at = models.DateTimeField(auto_now_Add = True)     
 
+    def __str__(self):
+        return f'Coupon {self.code} - {self.discount}%'
