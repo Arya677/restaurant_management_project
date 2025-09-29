@@ -21,4 +21,15 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = "__all__"
  
-  
+class OrderStatusUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id','status']
+
+    def validate_status(self, value):
+        allowed_statuses = [choice[0] for choice in Order.STATUS_CHOICES]
+        if value not in allowed_statuses:
+            raise serializers.ValidationError(
+                f'Invalid status. Allowed status are: {', '.join(alloed_statuses)}'
+            )
+        return value
