@@ -20,7 +20,7 @@ class OrderHistoryView(APIView):
 
 class UpdateOrderStatusView(APIView):
     def put(self, request, order_id):
-        order = get_object_or_404(Order, id=order_id)
+        order = get_object_or_404(Order, id=order_id)                                              
 
         serializer = OrderStatusUpdateSerializer(order, data=request.data, partial=True)   
         if serializer.is_valid():
@@ -29,7 +29,8 @@ class UpdateOrderStatusView(APIView):
                 {'message':'Order status updated successfully', 'order':serializer.data},
                 status = status.HTTP_200_OK,
             )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        
 
 def order_page(request):
     return render(request, "order.html
