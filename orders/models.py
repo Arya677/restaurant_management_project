@@ -6,6 +6,32 @@ class ActiveOrderManager(models.manager):
     def get_active_orders(self):
         return self.filter(status__in=['pending','processing'])
 
+class OrderQuerySet(models.QuesrySet):
+    def with_status(self, status):
+        return self.filetr(status=status)
+
+    def pending(self):
+        return self.filter(status='pending')
+
+    def completed(self):
+        return self.filter(status='completed')
+    
+    def cancelled(self):
+        return self.filter(status='cancelled')
+
+class OrderManager(models.Manager):
+    def get_queryset(self):
+        return OrderQuerySet(self.model, using=self._db)
+    
+    def with_status(self,status):
+        return self.get_queryset().with_status(status)
+
+    def pending(self):
+        return self.get_queryset().completed()
+    
+    def cancelled(self):
+        return self.get_queryset().cancelled()
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('pending',"Pending"),
