@@ -10,4 +10,5 @@ urlpatterns = [
     path('<str:order_id/', OrderDeatilView.as_view(), name= "order-detail"),      
     path('api/orders/history/', OrderHistoryView.as_view(), name= "order-history"),
     path('api/', include(router.urls)),
+    path('order/<int:order_id/update-status/', UpdateOrderStatusView.as_view(), name='update-order-status')    ,                              
 ]
