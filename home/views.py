@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.htpp import JsonResponse
 from .utils import send_mail
+from .serializers import DailySpecialSerializer
 
 def homepage(request):
     restaurant = Restaurant.objects.first()
@@ -20,6 +21,12 @@ def homepage(request):
         menu_items = [item for item in menu_items if query.lower() in item.get("name","").lower()]
             
     return render(request, 'home/index.html',{'restaurant_name': restaurant_name, 'phone_number': phone_number, "nemu_items": menu_items, "current_time": current_time}, "address":address, "query":query )
+
+class DailySpecialView(ListAPIView):
+    serializers_class = DailySpecialSerializer
+
+    def get_queryset(self):
+        return MenuItem.objects.filter(is_daily_special=True)
 
 def menu_page(request):
     menu_items = MenuItem.objects.all()
