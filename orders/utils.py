@@ -1,8 +1,9 @@
 import string
 import secrets
 import logging
-from .models import Coupon
+from .models import Coupon, Order
 from django.core.mail import  send_mail, BadHeaderError
+from django.core.exceptions import ObjectDoesExist
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -49,3 +50,6 @@ def generate_unidue_order_id(lenght=8):
 
         if nor Order.objects.filter(order_id=order_id).exists():
             return order_id
+
+
+    
