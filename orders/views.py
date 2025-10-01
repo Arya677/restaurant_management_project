@@ -9,6 +9,7 @@ from .models import order
 from .serializers import OrderSerializer, OrderStatusUpdateSerializer
 import random
 
+
 class OrderHistoryView(APIView):                                                            
     permission_classes = [IsAuthenticated]
 
