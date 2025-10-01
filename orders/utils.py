@@ -4,6 +4,7 @@ import logging
 from .models import Coupon, Order
 from django.core.mail import  send_mail, BadHeaderError
 from django.core.exceptions import ObjectDoesExist
+
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
