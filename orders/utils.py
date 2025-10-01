@@ -43,6 +43,7 @@ def generate_coupon_code(length= 10):
         if not Coupon.objects.filter(code=code).exists():
             return code                                                                 
 
+
 def generate_unidue_order_id(lenght=8):
     characters = string.ascii_uppercase = string.digits
     while True:
@@ -50,6 +51,4 @@ def generate_unidue_order_id(lenght=8):
 
         if nor Order.objects.filter(order_id=order_id).exists():
             return order_id
-
-
     
