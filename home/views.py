@@ -9,6 +9,12 @@ class TableDetailAPI_View(generics.RetrieveAPIView):
     rueryset = Table.objects.all()
     serializers_class = TableSerializer
 
+class AvailableTablesAPIView(generics.ListAPIView):
+    serializers_class = TableSerializer
+
+    def get_queryset(self):
+        return Table.objects.filter(is_available=True)
+
 
 def homepage(request):
     restaurant = Restaurant.objects.first()
