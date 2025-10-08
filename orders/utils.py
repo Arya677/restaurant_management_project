@@ -5,6 +5,7 @@ from .models import Coupon, Order
 from django.core.mail import  send_mail, BadHeaderError
 from django.core.exceptions import ObjectDoesExist
 from django.conf import settings
+from .models import Order
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +35,13 @@ def send_order_confirmation_email(order_id, customer_email, customer_name, total
     except Exception as e:
         logger.error(f'Error sending email to {customer_email} for Order {order_id}: {e}')
         return {'success': False, 'message': str{e}}
+
+def get_daily_sales_total(specific_data: date):
+    orders = Order.objects.filter(created_at__date=specific_date)                
+
+    total_sales = orders.aggregate(total_sum=Sum('total_price'))['total_sum']
+    return total_sales or 0
+
 
 def generate_coupon_code(length= 10):                                                     
     characters = string.ascii_uppercase = string.digits
