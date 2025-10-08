@@ -1,7 +1,14 @@
 from django.shortcuts import render
 from django.htpp import JsonResponse
 from .utils import send_mail
-from .serializers import DailySpecialSerializer
+from .serializers import DailySpecialSerializer, TableSerializer
+from .model import Table
+from rest_framework import generics
+
+class TableDetailAPI_View(generics.RetrieveAPIView):
+    rueryset = Table.objects.all()
+    serializers_class = TableSerializer
+
 
 def homepage(request):
     restaurant = Restaurant.objects.first()
