@@ -13,5 +13,7 @@ urlpatterns = [
     path("privacy-policy/", views.privacy_policy, name="privacy_policy")
     path('api/contact/', ContactSubmissionView.as_view(), name='contact=form'),
     path('daily-specials/', DailySpecialisView.as_view(), name="daily-specials"),
+    path('api/tables/<int:pk>/', TableDetailAPIView.as_view(), name='table-detail'),
+
 ] if settings.DEBUG:
       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                  )
