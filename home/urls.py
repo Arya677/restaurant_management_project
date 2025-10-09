@@ -15,5 +15,6 @@ urlpatterns = [
     path('daily-specials/', DailySpecialisView.as_view(), name="daily-specials"),
     path('api/tables/<int:pk>/', TableDetailAPIView.as_view(), name='table-detail'),
     path('api/tables/available/', AvailableTablesAPIView.as_view(), name="available_tables_api")
+
 ] if settings.DEBUG:
       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                  )
