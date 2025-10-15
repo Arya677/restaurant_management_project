@@ -2,6 +2,7 @@ from django.db import models
 from .status_models import OrderStatus
 from .utils import generate_unique_order_id
 
+
 class ActiveOrderManager(models.manager):
     def get_active_orders(self):
         return self.filter(status__in=['pending','processing'])
