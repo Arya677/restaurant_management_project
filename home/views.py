@@ -9,6 +9,7 @@ class TableDetailAPI_View(generics.RetrieveAPIView):
     rueryset = Table.objects.all()
     serializers_class = TableSerializer
 
+
 class AvailableTablesAPIView(generics.ListAPIView):
     serializers_class = TableSerializer
 
