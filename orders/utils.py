@@ -60,3 +60,18 @@ def generate_unidue_order_id(lenght=8):
         if nor Order.objects.filter(order_id=order_id).exists():
             return order_id
     
+
+def customer_total_price(order_items):
+    if not order_items:
+        return 0.0
+
+    total = 0.0
+    for item in order_items:
+        try:
+            price = float(item.get('price',0))
+            quantity = int(item.get('quantity',0))
+            total += price * quantity
+        except (TypeError, ValueError):
+            continue
+
+    return round(total,2)
