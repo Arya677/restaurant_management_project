@@ -20,3 +20,4 @@ class TimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Table
         fields = "__all__"
+
